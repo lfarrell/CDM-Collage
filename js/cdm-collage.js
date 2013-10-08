@@ -22,41 +22,33 @@ $(function() {
         e.preventDefault();
     });
 
-    $('#shuffle').click(function(e) {
+    $('#shuffle').click(function() {
         var shuffle_imgs = _.shuffle(data);
         var new_order = CDM.process(shuffle_imgs);
 
-        target.animate({
-            height: 0,
-            opacity: 0
-        }, 1500);
+        CDM.animate_view(target, new_order);
+    });
 
-        setTimeout(function () {
-            target.empty().html(new_order)
-        }, 1800);
+    $('#lucky').click(function() {
+        var pluck_img = _.sample(data);
+        var container = [];
+        container.push(pluck_img)
+        var img = CDM.process(container);
 
-        setTimeout(function() {
-            target.animate({
-                height: "100%",
-                opacity: 1
-            }, 2800);
-        });
-
-        e.preventDefault();
+        CDM.animate_view(target, img);
     });
 });
 
 function CDMImages() {
-    this.process = function(data, opacity) {
+    this.process = function(data) {
         var all_images = '';
-        var image_list = [];
         var results_size = data.length;
-        var base_url = 'http://cdm_path/cdm/singleitem/collection';
+        var cdm_path = 'cdm_path';
 
         if(results_size > 0) {
             for(var i=0; i<results_size; i++) {
                 all_images += '<div class="align" id="' + i + '">';
-                all_images += '<a target="_blank" href="' + base_url + data[i].collection + '/id/' + data[i].pointer +'">';
+                all_images += '<a target="_blank" href="' + cdm_path + data[i].collection + '/id/' + data[i].pointer +'">';
                 all_images += '<img src="' + data[i].url + '" alt="' + data[i].title + '"/>';
                 all_images += '<div class="description">' +data[i].title + '</div></a></div>';
             }
@@ -65,4 +57,22 @@ function CDMImages() {
         }
         return all_images;
     };
+
+    this.animate_view = function(target, order) {
+        target.animate({
+            height: 0,
+            opacity: 0
+        }, 1500);
+
+        setTimeout(function() {
+            target.empty().html(order)
+        }, 1800);
+
+        setTimeout(function() {
+            target.animate({
+                height: "100%",
+                opacity: 1
+            }, 2800);
+        });
+    }
 };

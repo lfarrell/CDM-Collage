@@ -32,13 +32,13 @@ img {
     transition: height 1s ease 0s;
 }
 .align:hover .description {
-    height: 85px;
+    height: 95px;
 }
 form {
-    padding-bottom: 1%;
+    padding-bottom: 5px;
     text-align: center;
 }
-input, #shuffle {
+input, #shuffle, #lucky {
     border: 1px solid gray;
     border-radius: 5px;
 }
@@ -75,16 +75,24 @@ input[type=submit] {
     width:105%;
     margin: -1% 0 2% -1%;
 }
-#shuffle {
-    background-color: white;
-}
 
-#shuffle {
+#shuffle, #lucky {
     background-color: forestgreen;
     color: white;
     font-size: .7em;
     padding: 1%;
     border: 1px solid forestgreen;
-    margin: 0 0 3% 27%;
+    margin: 0 0 3% 25%;
 }
-a { border: none }
+#lucky {
+    background-color: firebrick;
+    border: 1px solid firebrick;
+    margin-left: 5px;
+}
+a {
+    border: none
+}
+ul {
+    list-style-type: none;
+}
+ul li { display: inline; }
