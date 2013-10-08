@@ -4,5 +4,7 @@ a random image from the images returned by the search.  Images link out full ima
 ## Setup:
 
 Change the variable $cdm_path to the path to your ContentDM installation in cdm-proxy.php, typically something like: dc.lib.org.
+
 Change the variable cdm_path in js/cd-collage.js to return the full image, typically something like: http://dc.lib.org/cdm/singleitem/collection.
-Leave off trailing /.  
+
+Leave off trailing /.
