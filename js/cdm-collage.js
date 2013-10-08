@@ -9,7 +9,8 @@ $(function() {
         target.empty();
         hide.removeClass('hide');
 
-        data = $.parseJSON($.ajax({
+        // Purposely blowing this out into the global space
+        cdm_peek_data = $.parseJSON($.ajax({
             url: "cdm-proxy.php",
             dataType: "json",
             async: false,
@@ -23,14 +24,14 @@ $(function() {
     });
 
     $('#shuffle').click(function() {
-        var shuffle_imgs = _.shuffle(data);
+        var shuffle_imgs = _.shuffle(cdm_peek_data);
         var new_order = CDM.process(shuffle_imgs);
 
         CDM.animate_view(target, new_order);
     });
 
     $('#lucky').click(function() {
-        var pluck_img = _.sample(data);
+        var pluck_img = _.sample(cdm_peek_data);
         var container = [];
         container.push(pluck_img)
         var img = CDM.process(container);
@@ -83,7 +84,7 @@ function CDMImages() {
             target.animate({
                 height: "100%",
                 opacity: 1
-            }, 2800);
+            }, 2300);
         });
     }
 };
