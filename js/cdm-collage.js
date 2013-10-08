@@ -40,6 +40,11 @@ $(function() {
 });
 
 function CDMImages() {
+    /**
+     * Processes the returned images into HTML
+     * @param data
+     * @returns {string}
+     */
     this.process = function(data) {
         var all_images = '';
         var results_size = data.length;
@@ -58,6 +63,11 @@ function CDMImages() {
         return all_images;
     };
 
+    /**
+     * Hides and displays the returned images when shuffled or lucky is clicked
+     * @param target
+     * @param order
+     */
     this.animate_view = function(target, order) {
         target.animate({
             height: 0,
