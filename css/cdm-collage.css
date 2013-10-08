@@ -86,7 +86,7 @@ input[type=submit] {
 }
 #lucky {
     background-color: firebrick;
-    border: 1px solid firebrick;
+    border-color: firebrick;
     margin-left: 5px;
 }
 a {
