@@ -1,5 +1,6 @@
 **CDM Collage** - A project to search, browse and view images from ContentDM in various ways.  Currently it can shuffle or return
-a random image from the images returned by the search.  Images link out full image in the ContentDM viewer.
+a random image from the images returned by the search.  Hovering over an image displays its description.
+Images link out to the full image in the ContentDM viewer.
 
 ## Setup:
 
