@@ -1,9 +1,20 @@
 <?php
 $data = strip_tags(trim($_GET['q']));
-$terms = preg_split('\s+/', $data);
-$type = strip_tags(trim($_GET['type']));
+$terms = preg_split('/\s+/', $data);
+
+$query_list= array();
+foreach($terms as $term) {
+    if(preg_match('/^(and|or)$/', $term)) {
+        unset($term);
+    }
+    $query_list[] = "subjec^" . $term . "^all^and";
+}
+
+$term_limit = array_slice($query_list, 0, 6); // query can take a max of 6 terms
+$query_string = implode('!', $term_limit);
 $cdm_path = 'cdm_path';
-$ch = curl_init("https://$cdm_path:82/dmwebservices/index.php?q=dmQuery/all/subjec^" . $data . "^all^and/title/title/1024/1/0/0/0/0/0/0/json");
+
+$ch = curl_init("https://$cdm_path:82/dmwebservices/index.php?q=dmQuery/all/" . $query_string . "/title/title/1024/1/0/0/0/0/0/0/json");
 curl_setopt($ch, CURLOPT_HEADER, 0);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 $t = curl_exec($ch);

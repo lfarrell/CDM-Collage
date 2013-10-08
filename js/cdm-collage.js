@@ -39,6 +39,7 @@ $(function() {
     });
 });
 
+
 function CDMImages() {
     /**
      * Processes the returned images into HTML

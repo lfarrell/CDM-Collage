@@ -1,6 +1,9 @@
 body {
-    background-color: #E8E2DA; /*#383531;  whitesmoke */
+    background-color: whitesmoke; /*#383531;  whitesmoke */
     font-family: 'Cantarell', sans-serif;
+}
+#target {
+    margin-left: 10%;
 }
 div.align {
     height: 120px;
@@ -14,6 +17,7 @@ div.align {
 img {
     z-index: 1;
     position: relative;
+
 }
 .description {
     text-align: center;
