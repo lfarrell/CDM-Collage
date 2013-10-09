@@ -18,7 +18,7 @@ $(function() {
         }).responseText);
 
         hide.addClass('hide');
-        target.html(CDM.process(data));
+        target.html(CDM.process(cdm_peek_data));
 
         e.preventDefault();
     });
