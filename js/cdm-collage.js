@@ -37,6 +37,12 @@ $(function() {
         var img = CDM.process(container);
 
         CDM.animate_view(target, img);
+        setTimeout(function() {
+            target.animate({
+               "margin-left": "45%"
+
+            }, 1800);
+        });
     });
 });
 
