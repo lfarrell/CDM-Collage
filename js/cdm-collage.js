@@ -18,7 +18,7 @@ $(function() {
         }).responseText);
 
         hide.addClass('hide');
-        target.html(CDM.process(data));
+        target.html(CDM.process(cdm_peek_data));
 
         e.preventDefault();
     });
@@ -50,7 +50,7 @@ function CDMImages() {
     this.process = function(data) {
         var all_images = '';
         var results_size = data.length;
-        var cdm_path = 'cdm_path';
+        var cdm_path = 'cdm_path/singleitem/collection';
 
         if(results_size > 0) {
             for(var i=0; i<results_size; i++) {
