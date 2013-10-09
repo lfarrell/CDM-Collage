@@ -1,12 +1,16 @@
 <?php
 class CDMImages {
     public $query;
-    private $cdm_path = "cdm_path";
+    public $cdm_path;
     private $query_list = array();
     private $query_regx = '\"';
 
-    public function __construct($query) {
-        $this->query = strip_tags(trim($query));
+    /**
+     * @param $cdm_path
+     */
+    public function __construct($cdm_path) {
+        $this->query = strip_tags(trim($_GET['q']));
+        $this->cdm_path = $cdm_path;
     }
 
     /**
@@ -82,8 +86,9 @@ class CDMImages {
     protected function set_thumbnails() {
         $curl_data = $this->get_raw_data();
         $thumbnails = array();
+        $thumbnails[0]['cdm_path'] = $this->cdm_path;
 
-        $i = 0;
+        $i = 1;
         foreach($curl_data->records as $c) {
             if(preg_match('/(jp2|png|jpg|jpeg)$/', $c->find)) {
                 $thumbnails[$i]['url'] = "http://$this->cdm_path/utils/getthumbnail/collection" . $c->collection . "/id/" . $c->pointer;
@@ -115,5 +120,5 @@ class CDMImages {
     }
 }
 
-$data = new CDMImages($_GET['q']);
+$data = new CDMImages("your_cdm_path");
 $data->main();

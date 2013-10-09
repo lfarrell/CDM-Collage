@@ -49,14 +49,49 @@ $(function() {
 
 function CDMImages() {
     /**
+     * Get the CDM path
+     * @param data
+     * @returns {*}
+     * @private
+     */
+    this._get_cdm_path = function(data) {
+        return data[0].cdm_path;
+    }
+
+    /**
+     * Get just the returned images
+     * @param data
+     * @returns {*}
+     * @private
+     */
+    this._get_images = function(data) {
+        if(typeof(data[0].cdm_path) !== "undefined") {
+             data.splice(0,1); // remove cdm path so images display correctly
+        }
+
+        return data;
+    }
+
+    /**
+     * Reset margin to those specified in the css.
+     * @param target
+     * @private
+     */
+    this._reset = function(target) {
+        setTimeout(function() {
+            target.css('margin-left', '10%');
+        }, 1600);
+    }
+
+    /**
      * Processes the returned images into HTML
      * @param data
      * @returns {string}
      */
     this.process = function(data) {
         var all_images = '';
-        var results_size = data.length;
-        var cdm_path = 'http://cdm_path';
+        var results_size = this._get_images(data).length;
+        var cdm_path = this._get_cdm_path(data);
 
         if(results_size > 0) {
             for(var i=0; i<results_size; i++) {
@@ -82,6 +117,8 @@ function CDMImages() {
             opacity: 0
         }, 1500);
 
+        this._reset(target);
+
         setTimeout(function() {
             target.empty().html(order)
         }, 1800);
@@ -90,7 +127,7 @@ function CDMImages() {
             target.animate({
                 height: "100%",
                 opacity: 1
-            }, 2300);
+            }, 1900);
         });
     }
 };
