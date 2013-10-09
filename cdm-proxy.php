@@ -37,7 +37,7 @@ class CDMImages {
             } elseif(str_word_count($phrase) == 0) {
                 unset($phrase);
             } else {
-                if(preg_match('/^(and|or)$/', $term)) {
+                if(preg_match('/^(and|or)$/i', $term)) {
                     unset($phrase);
                 }
                 $this->query_list[] = "subjec^" . $phrase . "^all^and";
