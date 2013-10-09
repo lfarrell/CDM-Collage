@@ -3,7 +3,7 @@ class CDMImages {
     public $query;
     private $cdm_path = "cdm_path";
     private $query_list = array();
-    private $query_regx = '\"[A-Za-z0-9]+\"';
+    private $query_regx = '\"';
 
     public function __construct($query) {
         $this->query = strip_tags(trim($query));
@@ -14,7 +14,7 @@ class CDMImages {
      * @return array
      */
     private function get_phrase_list() {
-        return  preg_split('/' . $this->query_regx . '/', $this->query);
+        return preg_split('/' . $this->query_regx . '/', $this->query, null, PREG_SPLIT_DELIM_CAPTURE);
     }
 
     /**
@@ -25,24 +25,19 @@ class CDMImages {
         $phrases = $this->get_phrase_list();
 
         foreach($phrases as $phrase) {
-             $term = preg_replace('/\s+/', '+', $phrase);
-             $this->query_list[] = "subjec^" . $term . "^all^and";
-        }
+            $phrase = trim($phrase);
 
-        return $this->query_list;
-    }
-
-    /**
-     * Get single item terms
-     * @return array
-     */
-    protected function get_single_terms() {
-        $single_terms = preg_split('/\s+/', end($this->get_phrase_list()));
-        foreach($single_terms as $term) {
-            if(preg_match('/^(and|or)$/', $term)) {
-                unset($term);
+            if(str_word_count($phrase) > 1) {
+                $term = preg_replace('/\s+/', '+', $phrase);
+                $this->query_list[] = "subjec^" . $term . "^all^and";
+            } elseif(str_word_count($phrase) == 0) {
+                unset($phrase);
+            } else {
+                if(preg_match('/^(and|or)$/', $term)) {
+                    unset($phrase);
+                }
+                $this->query_list[] = "subjec^" . $phrase . "^all^and";
             }
-            $query_list[] = "subjec^" . $term . "^all^and";
         }
 
         return $this->query_list;
@@ -66,10 +61,10 @@ class CDMImages {
         $ch = curl_init("https://" . $this->cdm_path . ":82/dmwebservices/index.php?q=dmQuery/all/" . $query_string . "/title/title/1024/1/0/0/0/0/0/0/json");
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $t = curl_exec($ch);
+        $data = curl_exec($ch);
         curl_close($ch);
 
-        return $t;
+        return $data;
     }
 
     /**
@@ -105,7 +100,7 @@ class CDMImages {
     /**
      * Returns the JSON response
      */
-    public function return_thumbnails() {
+    protected function return_thumbnails() {
         echo json_encode($this->set_thumbnails());
     }
 
@@ -114,7 +109,6 @@ class CDMImages {
      */
     public function main() {
         $this->get_phrases();
-        $this->get_single_terms();
         $this->get_curl();
         $this->set_thumbnails();
         $this->return_thumbnails();
