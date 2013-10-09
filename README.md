@@ -4,8 +4,9 @@ Images link out to the full image in the ContentDM viewer.
 
 ## Setup:
 
-Change the variable $cdm_path to the path to your ContentDM installation in cdm-proxy.php, typically something like: dc.lib.org.
+Navigate to the bottom of the file cdm-proxy.php to the line:
+```PHP
+$data = new CDMImages("your_cdm_path");```
+.  Change cdm to your cdm path leaving off the http(s)://, like so:  'dc.lib.edu'.
 
-Change the variable cdm_path in js/cd-collage.js to return the full image, typically something like: http://dc.lib.org/cdm/singleitem/collection.
-
-Leave off trailing /.
+That's it.  You're now ready to roll.
