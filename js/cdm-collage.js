@@ -37,6 +37,12 @@ $(function() {
         var img = CDM.process(container);
 
         CDM.animate_view(target, img);
+        setTimeout(function() {
+            target.animate({
+               "margin-left": "45%"
+
+            }, 1800);
+        });
     });
 });
 
@@ -50,7 +56,7 @@ function CDMImages() {
     this.process = function(data) {
         var all_images = '';
         var results_size = data.length;
-        var cdm_path = 'cdm_path';
+        var cdm_path = 'dc.lib.unc.edu';
 
         if(results_size > 0) {
             for(var i=0; i<results_size; i++) {
