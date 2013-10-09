@@ -56,7 +56,7 @@ function CDMImages() {
     this.process = function(data) {
         var all_images = '';
         var results_size = data.length;
-        var cdm_path = 'dc.lib.unc.edu';
+        var cdm_path = 'cdm_path';
 
         if(results_size > 0) {
             for(var i=0; i<results_size; i++) {
