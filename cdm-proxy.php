@@ -90,7 +90,7 @@ class CDMImages {
 
         $i = 1;
         foreach($curl_data->records as $c) {
-            if(preg_match('/(jp2|png|jpg|jpeg)$/', $c->find)) {
+            if(preg_match('/(jp2|png|jpg|jpeg)$/i', $c->find)) {
                 $thumbnails[$i]['url'] = "http://$this->cdm_path/utils/getthumbnail/collection" . $c->collection . "/id/" . $c->pointer;
                 $thumbnails[$i]['title'] = $c->title;
                 $thumbnails[$i]['collection'] = $c->collection;
