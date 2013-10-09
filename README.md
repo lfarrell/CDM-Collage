@@ -5,8 +5,7 @@ Images link out to the full image in the ContentDM viewer.
 ## Setup:
 
 Navigate to the bottom of the file cdm-proxy.php to the line:
-```PHP
-$data = new CDMImages("your_cdm_path");```
-.  Change cdm to your cdm path leaving off the http(s)://, like so:  'dc.lib.edu'.
+```php
+$data = new CDMImages("your_cdm_path");```.
 
-That's it.  You're now ready to roll.
+Change cdm to your_cdm_path leaving off the http(s)://, like so:  'dc.lib.edu'.  That's it.  You're now ready to roll.
