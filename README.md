@@ -9,10 +9,10 @@ Navigate to the bottom of the file cdm-proxy.php to the line:
 $data = new CDMImages("your_cdm_path");
 ```
 
-Change cdm to your_cdm_path leaving off the http(s)://, like so:  'dc.lib.edu'.  That's it.  You're now ready to roll.
+Change "your_cdm_path" to the path to your CONTENTdm instance leaving off the http(s)://, like so:  'dc.lib.edu'.  That's it.  You're now ready to roll.
 
 ## Usage:
 
 Enter up to six search terms.  This is the maximum number of phrases/terms the CONTENTdm API allows.
-If looking for a phrase put it in double quotes, e.g. "Haw River".    The application will also return a maximum of 1024 records;
+If looking for a phrase put it in double quotes, e.g. "Haw River".  A phrase only counts as one search term. The application will also return a maximum of 1024 records;
  again, this is the most CONTENTdm will allow.
