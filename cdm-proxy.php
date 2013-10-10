@@ -32,16 +32,12 @@ class CDMImages {
             $phrase = trim($phrase);
 
             if(str_word_count($phrase) > 1) {
-                $term = preg_replace('/\s+/', '+', $phrase);
-                $this->query_list[] = "subjec^" . $term . "^all^and";
-            } elseif(str_word_count($phrase) == 0) {
+                $phrase = preg_replace('/\s+/', '+', $phrase);
+            } elseif(str_word_count($phrase) == 0 || preg_match('/^(and|or)$/i', $phrase)) {
                 unset($phrase);
-            } else {
-                if(preg_match('/^(and|or)$/i', $term)) {
-                    unset($phrase);
-                }
-                $this->query_list[] = "subjec^" . $phrase . "^all^and";
+                continue;
             }
+            $this->query_list[] = "subjec^" . $phrase . "^all^and";
         }
 
         return $this->query_list;
