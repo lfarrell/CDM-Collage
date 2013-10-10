@@ -13,5 +13,6 @@ Change cdm to your_cdm_path leaving off the http(s)://, like so:  'dc.lib.edu'. 
 
 ## Usage:
 
-Enter search phrases in double quotes, e.g. "Haw River".  You can enter a maximum of six search phrases and terms.  This
-is the maximum number of phrases/terms the CONTENTdm API allows.  It will also return a maximum of 1024 records.  Again the most CONTENTdm will allow.
+Enter up to six search terms.  This is the maximum number of phrases/terms the CONTENTdm API allows.
+If looking for a phrase put it in double quotes, e.g. "Haw River".    The application will also return a maximum of 1024 records;
+ again, this is the most CONTENTdm will allow.
