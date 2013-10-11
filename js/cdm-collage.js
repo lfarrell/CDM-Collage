@@ -80,12 +80,14 @@ function CDMImages() {
         var cdm_path = this._get_cdm_path(data);
 
         // CDM path is the first result so skip it
-        if(results_size > 1) {
-            for(var i=1; i<results_size; i++) {
-                all_images += '<div class="align" id="' + i + '">';
-                all_images += '<a target="_blank" href="http://' + cdm_path + data[i].collection + '/id/' + data[i].pointer +'">';
-                all_images += '<img src="' + data[i].url + '" alt="' + data[i].title + '"/>';
-                all_images += '<div class="description">' +data[i].title + '</div></a></div>';
+        if(results_size > 0) {
+            for(var i=0; i<results_size; i++) {
+                if(!data[i].cdm_path) {
+                    all_images += '<div class="align" id="' + i + '">';
+                    all_images += '<a target="_blank" href="http://' + cdm_path + data[i].collection + '/id/' + data[i].pointer +'">';
+                    all_images += '<img src="' + data[i].url + '" alt="' + data[i].title + '"/>';
+                    all_images += '<div class="description">' +data[i].title + '</div></a></div>';
+                }
             }
         } else {
             all_images += '<p id="no-results">No results to display</p>';
