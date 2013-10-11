@@ -82,7 +82,7 @@ class CDMImages {
     protected function set_thumbnails() {
         $curl_data = $this->get_raw_data();
         $thumbnails = array();
-        $thumbnails[0]['cdm_path'] = $this->cdm_path;
+        $thumbnails[0]['cdm_path'] = $this->cdm_path . "/cdm/singleitem/collection";
 
         $i = 1;
         foreach($curl_data->records as $c) {
@@ -116,5 +116,5 @@ class CDMImages {
     }
 }
 
-$data = new CDMImages("your_cdm_path");
+$data = new CDMImages("cdm_path");
 $data->main();

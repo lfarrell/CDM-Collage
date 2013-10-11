@@ -59,20 +59,6 @@ function CDMImages() {
     }
 
     /**
-     * Get just the returned images
-     * @param data
-     * @returns {*}
-     * @private
-     */
-    this._get_images = function(data) {
-        if(typeof(data[0].cdm_path) !== "undefined") {
-             data.splice(0,1); // remove cdm path so images display correctly
-        }
-
-        return data;
-    }
-
-    /**
      * Reset margin to those specified in the css.
      * @param target
      * @private
@@ -90,13 +76,14 @@ function CDMImages() {
      */
     this.process = function(data) {
         var all_images = '';
-        var results_size = this._get_images(data).length;
+        var results_size = data.length;
         var cdm_path = this._get_cdm_path(data);
 
-        if(results_size > 0) {
-            for(var i=0; i<results_size; i++) {
+        // CDM path is the first result so skip it
+        if(results_size > 1) {
+            for(var i=1; i<results_size; i++) {
                 all_images += '<div class="align" id="' + i + '">';
-                all_images += '<a target="_blank" href="' + cdm_path + data[i].collection + '/id/' + data[i].pointer +'">';
+                all_images += '<a target="_blank" href="http://' + cdm_path + data[i].collection + '/id/' + data[i].pointer +'">';
                 all_images += '<img src="' + data[i].url + '" alt="' + data[i].title + '"/>';
                 all_images += '<div class="description">' +data[i].title + '</div></a></div>';
             }
